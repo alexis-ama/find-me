@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Enter the Password</title>
+    <style>
+        #attempt {
+            text-align: center;
+            place-items: center
+        }
+        
+        #success {
+            display: none;
+            text-align: center;
+        }
+           
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="attempt">
+        <form id="password_form">
+            <label for="password_input">Password:</label>
+            <input type="password" id="password_input" placeholder="50617373776F7264" required> <!-- should type be text or password?-->
+
+
+            <!-- <br> -->
+            <button type="button" onclick="password_check()">Submit</button>
+        </form>
+        <div id="error_message" class="error"></div>
+    </div>
+    
+    <div id="success">
+        <h2>Congratulations!</h2>
+        <h3>Welcome to USDA Tech!</h3>
+        <button onclick="homepage()">Back to Home</button>
+    </div>
+    
+    <script>
+        const x50617373776F7264 = String.fromCharCode(0x55, 0x53, 0x44, 0x41, 0x54, 0x45, 0x43, 0x48); // each char in 'USDATECH' spliced in HEX form
+        
+        function password_check() {
+            const password_input = document.getElementById("password_input").value;
+            const error_message = document.getElementById("error_message");
+            
+            if (password_input === x50617373776F7264) {
+                // Correct password entered, so sent to 2nd page
+                document.getElementById("attempt").style.display = "none";
+                document.getElementById("success").style.display = "block";
+                error_message.textContent = "";
+                
+            } else {
+                // Error message pops up if password is invalid
+                error_message.textContent = "Invalid password. Please try again.";
+                document.getElementById("password_input").value = ""; // Resetting password input
+                document.getElementById("password_input").focus(); // "Focuses" on textbox by highlighting it
+            }
+        }
+        
+        function homepage() {
+            // Password homepage
+            document.getElementById("attempt").style.display = "block"; // Password attempt text (homepage) appears
+            document.getElementById("success").style.display = "none"; // Success text (2nd page) doesn't appear
+            document.getElementById("password_input").value = ""; // Resetting password input
+        }
+        
+        // Allowing submission by pressing the 'Enter' key
+        document.getElementById("password_input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                password_check();
+            }
+        });
+    </script>
+</body>
+</html>
