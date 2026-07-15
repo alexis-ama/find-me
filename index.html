@@ -9,23 +9,35 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%)translateY(-50%);
-        }
-
-        #success {
-            display: none;
             text-align: center;
         }
 
-        .container {
-            display: flex;
-            border: 2px solid black;
+        #success_header {
+            /* display: none; */
+            text-align: center;
         }
 
-        .tech_roles_box {
-            flex: 1;
-            margin: 15px;
-            padding: 40px;
-            border: 2px solid #ccc;
+        #success_body {
+            text-align: center;
+            margin: 0 auto; /* centers box in middle of page */
+            width: 510px;
+            background-color: #00539c4a;
+            /* border: 3px solid #00539c4a; */
+            padding: 30px;
+            padding-bottom: 50px;
+
+        }
+
+        #contact_box {
+            margin: 0 auto; /* centers box in middle of page */
+            width: 350px;
+            border: 3px solid #005941d1;
+            background-color: #005941d1;
+            padding-bottom: 20px;
+        }
+
+        .button {
+            text-align: center;
         }
 
         .error {
@@ -36,59 +48,71 @@
 </head>
 
 <body>
-    <div id="attempt">
+    <!-- <div id="attempt">
+         <p>This page has been HEXED... Find the password to unlock it.</p>
         <form id="password_form">
             <label for="password_input">Password:</label>
             <input type="password" id="password_input" placeholder="50617373776F7264" required>
-            <!-- should type be text or password?-->
 
             <button type="button" onclick="password_check()">Submit</button>
+           
         </form>
         <div id="error_message" class="error"></div>
-    </div>
+    </div> -->
 
-    <div id="success">
+    <div id="success_header">
         <header>
-            <img src="USDA_logo.png" alt="USDA logo" />
+            <img src="USDA_logo.png" alt="USDA logo" height="150"/>
         </header>
-        <h2>Congratulations!</h2>
-        <h3>Welcome to USDA Tech</h3>
-
-        <h3>Mission:</h3>
-        <p>
-            USDA strives to support the agriculture of the United States, its natural resources and environment, and the nutritional welfare of its people.
-        </p>
         
-       <div class="container">
-            <div class="tech_roles_box"><a href="https://www.usajobs.gov/job/871950400">1. Program Analyst (Early Career - Strategy & Operations)</a></div>
-            <div class="tech_roles_box"><a href="https://www.usajobs.gov/job/871950200">2. IT Specialist (Early Career - Information Technology)</a></div>
-            <!-- <div class="box">Box 3</div> -->
-        <!-- <h3>Open Tech Roles:</h3>
-        <p><a href="https://www.usajobs.gov/job/871950400">1. Program Analyst (Early Career - Strategy & Operations)</a></p>
-        <p><a href="https://www.usajobs.gov/job/871950200">2. IT Specialist (Early Career - Information Technology)</a></p>
-        <h5>USDA is recruiting talent like YOU for our tech roles. Apply now!</h5> -->
+        <div id="success_body"  style="font-family:Arial">
+            
+            <h2>Congratulations. You removed the HEX!</h2>
+            <h3>Welcome to USDA Tech!</h3>
 
-       </div>
-       <h5>USDA is recruiting talent like YOU for our tech roles. Apply now!</h5>
-        <h3>Stay connected with USDA:</h3>
-
-        <form id="contact" method="POST" netlify> <!-- Netlify form -->
+            <!-- <h4>Mission:</h4> -->
             <p>
-                <label>Your Name: </label>
-                <input type="text" name="name">
+                <i>USDA strives to support the agriculture of the United States, its natural resources and environment, and the nutritional welfare of its people.</i>
             </p>
-            <p>
-                <label>Your Email: </label>
-                <input type="email" name="email">
-            </p>
+            
+            <h4>USDA is recruiting talent like YOU for tech roles. Apply now!</h4>
+            
+            <div id="contact_box">
+                <h3>Stay connected with USDA:</h3>
 
-            <button type="submit">Send</button>
-        </form>
+                    <form id="contact" method="POST" netlify> <!-- Netlify form -->
+                        <p>
+                            <label><b>Your Name:</b> </label>
+                            <input type="text" name="name" required>
+                        </p>
+                        <p>
+                            <label><b>Your Email:</b></label>
+                            <input type="email" name="email" required>
+                        </p>
+                        <p>
+                            <label><b>Area(s) of Interest:</b></label>
+                            <select id="interest_area" name="interest_area" multiple>
+                                <option value="option" disabled>Select an option</option>
+                                <option value="Data & AI">Data & AI</option>
+                                <option value="Cybersecurity">Cybersecurity</option>
+                                <option value="Software engineering">Software engineering</option>
+                                <option value="IT budget">IT budget</option>
+                                <option value="Acquisition">Acquisition</option>
+                                <option value="Policy">Policy</option>
+                            </select>
+                        </p>
 
-        <br></br>
-
+                        <div class="button">
+                            <button type="submit">Send</button>
+                        </div>
+                    </form>  
+            </div>                
+        </div>
         <block>
-            <button onclick="homepage()">Back to Home</button>
+            <br></br>
+            <div class="button">
+                <button onclick="homepage()">Back to Home</button>
+            </div>
         </block>
     </div>
 
@@ -100,9 +124,10 @@
             const error_message = document.getElementById("error_message");
 
             if (password_input === x50617373776F7264) {
-                // Correct password entered, so sent to 2nd page
+                // Correct password entered, so sent to success page (2nd page)
                 document.getElementById("attempt").style.display = "none";
-                document.getElementById("success").style.display = "block";
+                document.getElementById("success_header").style.display = "block";
+                document.getElementById("success_body").style.display = "block";
                 error_message.textContent = "";
 
             } else {
@@ -115,8 +140,9 @@
 
         function homepage() {
             // Password homepage
-            document.getElementById("attempt").style.display = "block"; // Password attempt text (homepage) appears
-            document.getElementById("success").style.display = "none"; // Success text (2nd page) doesn't appear
+            document.getElementById("attempt").style.display = "block"; // Password attempt page appears
+            document.getElementById("success_header").style.display = "none"; // Success page (2nd page) doesn't appear
+            document.getElementById("success_body").style.display = "none"; 
             document.getElementById("password_input").value = ""; // Resetting password input
         }
 
