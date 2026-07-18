@@ -45,7 +45,7 @@ cd directory-name
 git commit -m “message"
 git push
 ```
-4. Follow the steps on the GitHub Pull Request tutorial to get permission to add your changes to the project.
+4. Follow the steps on the [GitHub Pull Request tutorial](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request#creating-the-pull-request) to get permission to add your changes to the project.
 
 ## Running the Website
 ### Testing the Password
